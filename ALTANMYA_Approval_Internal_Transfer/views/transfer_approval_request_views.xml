@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="approval_transfer_request_view_form_inherit" model="ir.ui.view">
+        <field name="name">approval.transfer.request.view.form.inherit</field>
+        <field name="model">approval.request</field>
+        <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='action_get_attachment_view']" position="after">
+                <button name="action_open_transfer_orders" type="object"
+                    class="oe_stat_button" icon="fa-credit-card"
+                    attrs="{'invisible': ['|', ('transfer_order_count', '=', 0),('approval_type', '!=', 'transfer')]}">
+                    <field name="transfer_order_count" string="Transfer Orders" widget="statinfo"/>
+                </button>
+            </xpath>
+
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_create_transfer_orders" type="object"
+
+                    string="Create Transfer" class="btn-primary"
+                    data-hotkey="g" attrs="{'invisible': [
+                        '|', '|',
+                            ('approval_type', '!=', 'transfer'),
+                            ('request_status', '!=', 'approved'),
+                            ('transfer_order_count', '&gt;', 0)
+                    ]}"/>
+            </xpath>
+
+            <xpath expr="//group[1]/group[1]/field[3]" position="after">
+
+                <field name="location_id" force_save="1"
+                    attrs="{
+                        'invisible': [('approval_type', '!=', 'transfer')],
+                        'required': [('approval_type','==','transfer')]
+                     }"/>
+
+                <field name="location_dest_id" force_save="1"
+                    attrs="{
+                        'invisible': [('approval_type', '!=', 'transfer')],
+                        'required': [('approval_type','==','transfer')]
+                    }"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
+
+
