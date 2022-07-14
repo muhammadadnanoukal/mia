@@ -507,9 +507,9 @@ class Booking(http.Controller):
             start = tz_session.localize(event.start).astimezone(pytz.utc)
             end = tz_session.localize(event.stop).astimezone(pytz.utc)
 
-            _, redirect = self.check_resource_availability(book, resource, start, end)
-            if redirect:
-                return redirect
+#             _, redirect = self.check_resource_availability(book, resource, start, end)
+#             if redirect:
+#                 return redirect
 
         # if transaction pending / done: redirect to confirmation
         tx = request.env.context.get('website_booking_transaction')
