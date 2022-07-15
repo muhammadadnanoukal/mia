@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="view_device_log_error" model="ir.ui.view">
+            <field name="name">fp.logerror.tree</field>
+            <field name="model">fp.logerror</field>
+            <field name="arch" type="xml">
+                <tree string="Device errors">
+                    <field name="log_date"/>
+                    <field name="log_device"/>
+                    <field name="device_error"/>
+                </tree>
+            </field>
+   </record>
+
+    <record id="view_device_tree" model="ir.ui.view">
+            <field name="name">od.device.tree</field>
+            <field name="model">od.device</field>
+            <field name="arch" type="xml">
+                <tree string="All devices">
+
+                    <field name="device_name"/>
+                    <field name="device_model"/>
+                    <field name="device_port"/>
+                    <field name="device_enables"/>
+                    <field name="last_seq"/>
+
+                </tree>
+            </field>
+   </record>
+
+    <record id="view_attend_tree" model="ir.ui.view">
+            <field name="name">od.attendance.tree</field>
+            <field name="model">od.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance table">
+                    <field name="log_seq"/>
+                    <field name="log_userid"/>
+                    <field name="log_date"/>
+                    <field name="log_device"/>
+
+                </tree>
+            </field>
+        </record>
+
+    <record id="view_attend_treated_tree" model="ir.ui.view">
+            <field name="name">od.attend.treat.tree</field>
+            <field name="model">od.inout</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance in out table">
+                    <field name="emp_deviceno"/>
+                    <field name="emp_name" decoration-danger="emp_name in ('NOT DEFINED!!','TOO MANY EMP!!') "/>
+                    <field name="date_in" decoration-danger = " not (date_out) " decoration-warning="date_inflag == 'setting'"  decoration-success="date_inflag == 'internal'"  />
+                    <field name="date_out" decoration-danger = " not (date_in) " decoration-warning="date_outflag == 'setting'" decoration-success="date_outflag == 'internal'"  />
+                    <field name="date_inflag" widget="badge" decoration-warning="date_inflag == 'setting' " decoration-success="date_inflag == 'internal'" />
+                    <field name="date_outflag"  widget="badge" decoration-warning="date_outflag == 'setting'" decoration-success="date_outflag == 'internal'"  />
+                    <field name="shift_id"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="view_attend_config_settings" model="ir.ui.view">
+            <field name="name">Configuration</field>
+            <field name="model">od.fp.settings</field>
+            <field name="arch" type="xml">
+                <tree string="All Settings">
+
+                    <field name="setting_name"/>
+                    <field name="setting_value"/>
+
+                </tree>
+            </field>
+   </record>
+
+    <record id="tanHrEmpAttMode_inherit" model="ir.ui.view">
+        <field name="name">tanHrEmpAttMode.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pin']" position="after" >
+               <field name="att_mode"/>
+               <field name="studio_employee_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="resourcecalendarattendance_inherit" model="ir.ui.view">
+        <field name="name">resourcecalendarattendance.inherit</field>
+        <field name="model">resource.calendar.attendance</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='hour_to']" position="after" >
+               <field name="duration"/>
+               <field name="tol_in_early"/>
+               <field name="tol_in_late"/>
+               <field name="tol_out_early"/>
+               <field name="tol_out_over"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="frmresourcecalendar_inherit" model="ir.ui.view">
+        <field name="name">resourcecalendar.inherit</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tz']" position="after" >
+               <field name="late_enter"/>
+               <field name="early_exit"/>
+               <field name="early_overtime"/>
+               <field name="overtime1"/>
+               <field name="overtime2"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_attend_payroll" model="ir.ui.view">
+            <field name="name">od.attpayroll.tree</field>
+            <field name="model">od.attpayroll</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance payroll">
+                    <field name="employee_id"/>
+                    <field name="date_in"  />
+                    <field name="diff_entry"  />
+                    <button name="btn_ok" class="fa fa-check" type="object" attrs="{'invisible': [('status','not in',('draft'))]}" />
+                    <button name="btn_no" class="fa fa-times"  type="object" attrs="{'invisible': [('status','not in',('draft'))]}"  />
+                    <field name="date_out"   />
+                    <field name="diff_Exit"  />
+                    <button name="btn_ok2" class="fa fa-check" type="object" attrs="{'invisible': [('status2','not in',('draft'))]}" />
+                    <button name="btn_no2" class="fa fa-times"  type="object" attrs="{'invisible': [('status2','not in',('draft'))]}"  />
+                    <field name="shift_id"/>
+                    <field name="status" invisible="1"/>
+                    <field name="status2" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="model_od_attpayroll_reject_in" model="ir.actions.server">
+        <field name="name">Reject (In) selection </field>
+        <field name="model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.btn_no()</field>
+    </record>
+    <record id="model_od_attpayroll_validate_in" model="ir.actions.server">
+        <field name="name">Validate (In) selection </field>
+        <field name="model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.btn_ok()</field>
+    </record>
+
+    <record id="model_od_attpayroll_reject_out" model="ir.actions.server">
+        <field name="name">Reject (Out) selection </field>
+        <field name="model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.btn_no2()</field>
+    </record>
+    <record id="model_od_attpayroll_validate_out" model="ir.actions.server">
+        <field name="name">Validate (Out) selection </field>
+        <field name="model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_model_id" ref="fgprint.model_od_attpayroll"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = records.btn_ok2()</field>
+    </record>
+
+    </data>
+
+    </odoo>

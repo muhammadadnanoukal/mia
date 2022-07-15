@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+od_device,od.device,model_od_device,base.group_user,1,1,1,1
+od_attendance,od.attendance,model_od_attendance,base.group_user,1,1,1,1
+od_inout,od.inout,model_od_inout,base.group_user,1,1,1,1
+fp_logerror,fp.logerror,model_fp_logerror,base.group_user,1,1,1,1
+od_fp_settings,od.fp.settings,model_od_fp_settings,base.group_user,1,1,1,1
+od_attpayroll,od.attpayroll,model_od_attpayroll,base.group_user,1,1,1,1
+
