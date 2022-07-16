@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-<data>
-
-    <menuitem id="menu_Stock_Move_details" name="Stock Move details" parent="stock.menu_warehouse_report" sequence="150" action="stock_move_detail_action"/>
-
-</data>
-</odoo>
