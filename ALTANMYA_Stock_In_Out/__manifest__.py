@@ -1,0 +1,17 @@
+{
+    'name': 'ALTANMYA Stock IN/OUT',
+    'version': '2.0',
+    'summary': 'A Dynamic report for each product, type of transaction, and transaction with retrospective effects + IN/OUT Transactions',
+    'description': "A Dynamic report that shows both beginning balance and ending balance for each product, type of transaction, and transaction with retrospective effects + IN/OUT Transactions",
+    'category': 'Inventory/Inventory',
+    'author': 'ALTANMYA - TECHNOLOGY SOLUTIONS',
+    'company': 'ALTANMYA - TECHNOLOGY SOLUTIONS Part of ALTANMYA GROUP',
+    'website': "http://tech.altanmya.net",
+    'depends': ['stock','product'],
+    'data': ['security/ir.model.access.csv','security/security.xml','views/view_actions.xml','views/view_menu.xml','views/view_pages.xml'],
+    'demo': [],
+    'qweb': [],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

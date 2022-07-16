@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+   <record id="stock_move_in_out_action" model="ir.actions.act_window">
+        <field name="name">stock.move.in.out.tree</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move.in.out</field>
+        <field name="view_mode">tree</field>
+    </record>
+</data>
+</odoo>
