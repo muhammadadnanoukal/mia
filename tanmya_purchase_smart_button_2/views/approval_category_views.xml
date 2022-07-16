@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="approval_purchase_category_view_form_inherit_manual_rfqs" model="ir.ui.view">
+        <field name="name">approval.purchase.category.view.form.inherit.manual_rfqs</field>
+        <field name="model">approval.category</field>
+        <field name="inherit_id" ref="approvals.approval_category_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='approval_type']" position="after">
+                <field name="manual_rfqs" attrs='{"invisible": [("approval_type", "!=", "purchase")]}'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
