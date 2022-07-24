@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="discount_fields" model="ir.ui.view">
+            <field name="name">discount.fields</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@id='invoice_tab'][1]/field[1]/tree[1]/field[11]" position="after">
+                    <field name="discount_amount" optional="show"/>
+                    <field name="price_discount" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_move_discount" model="ir.ui.view">
+            <field name="name">account.move.discount</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@class='oe_subtotal_footer oe_right'][1]/field[1]" position="after">
+                    <field name="total_discount" widget="monetary"/>
+                    <field name="amount_untaxed_without_disc" widget="monetary"/>
+                    <field name="amount_tax_without_disc" widget="monetary"/>
+                    <field name="amount_total_without_disc" widget="monetary"/>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>
